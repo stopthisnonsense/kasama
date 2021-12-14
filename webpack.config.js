@@ -17,7 +17,7 @@ module.exports = {
 					},
 					{
 						loader: 'sass-loader',
-						options: { sourceMap: true },
+						options: { sourceMap: true, implementation: require('sass') },
 					},
 				],
 			},
