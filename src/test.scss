@@ -1,13 +1,44 @@
-$cadet-grey: #93a3b1ff;
-$canary: #f8f991ff;
-$razzmic-berry: #8c5383ff;
-$eerie-black: #171614ff;
-$dark-jungle-green: #1e2019ff;
+@use './variables/base';
+@use './mixins/_breakpoints' as *;
+@import './mixins/_rem';
 
 :root {
-	--color-grey: $cadet-grey;
-	--color-canary: $canary;
-	--color-razzmic-berry: $razzmic-berry;
-	--color-eerie-black: $eerie-black;
-	--color-dark-jungle-green: $dark-jungle-green;
+	--color-grey: #{base.$cadet-grey};
+	--color-canary: #{base.$canary};
+	--color-razzmic-berry: #{base.$razzmic-berry};
+	--color-eerie-black: #{base.$eerie-black};
+	--color-dark-jungle-green: #{base.$dark-jungle-green};
+	--header-line-height: #{base.$header-line-height};
+	--content-line-height: #{base.$content-line-height};
+	--font-baseline: #{base.$font-baseline}px;
+	--smaller-font: #{base.$smaller-font};
+	@each $header, $multiplier in base.$headers {
+		--h#{$header}: #{$multiplier * base.$ratio-baseline}rem;
+	}
+}
+
+body {
+	line-height: var(--content-line-height);
+	font-size: var(--font-baseline);
+	background-color: var(--color-grey);
+}
+
+:is(h1, h2, h3, h4, h5, h6) {
+	line-height: var(--header-line-height);
+	margin-top: 0;
+	margin-bottom: 1rem;
+}
+
+@each $header, $multiplier in base.$headers {
+	h#{$header} {
+		font-size: var(--h#{$header});
+	}
+}
+
+.entry-content {
+	padding: rem(16);
+}
+
+.wp-site-blocks {
+	padding: rem(16);
 }

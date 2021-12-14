@@ -1,0 +1,24 @@
+@use '../variables/base' as base;
+@use "sass:math";
+$breakpoints: (
+	'small': #{math.div(640, base.$font-baseline)}rem,
+	'medium': #{math.div(768, base.$font-baseline)}rem,
+	'large': #{math.div(1024, base.$font-baseline)}rem,
+	'xlarge': #{math.div(1280, base.$font-baseline)}rem,
+) !default;
+
+@mixin breakpoint($breakpoint) {
+	// If the key exists in the map
+	@if map-has-key($breakpoints, $breakpoint) {
+		// Prints a media query based on the value
+		@media (min-width: map-get($breakpoints, $breakpoint)) {
+			@content;
+		}
+	}
+
+	// If the key doesn't exist in the map
+	@else {
+		@warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+          + "Available breakpoints are: #{map-keys($breakpoints)}.";
+	}
+}

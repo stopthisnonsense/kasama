@@ -1,0 +1,23 @@
+// @import '../mixins/rem';
+$cadet-grey: #93a3b1ff;
+$canary: #f8f991ff;
+$razzmic-berry: #8c5383ff;
+$eerie-black: #171614ff;
+$dark-jungle-green: #1e2019ff;
+$header-line-height: 1.2;
+$content-line-height: 1.5;
+
+$font-baseline: 16;
+$rem-base: $font-baseline;
+$ratio-baseline: 0.875;
+$font-multiplier: 1.125;
+$smaller-font: #{$ratio-baseline}rem; // expected 14px (16px * .875)
+
+$headers: (
+	'1': 4,
+	'2': 3.5,
+	'3': 3,
+	'4': 2,
+	'5': 1.5,
+	'6': 1,
+);
