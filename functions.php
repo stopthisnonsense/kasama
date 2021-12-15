@@ -13,5 +13,11 @@
             wp_enqueue_script( 'kasama-theme-scripts' );
         }
     }
+
+    function kc_register_supports() {
+        add_theme_support( 'title-tag' );
+    }
+
     add_action( 'wp_enqueue_scripts', 'kc_theme_scripts' );
+    add_action( 'after_theme_setup', 'kc_register_supports' );
 ?>
