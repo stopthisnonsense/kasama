@@ -1,6 +1,7 @@
-@use './variables/base';
-@use './mixins/_breakpoints' as *;
-@import './mixins/_rem';
+@use './scss/variables/base';
+@use './scss/mixins/_breakpoints' as *;
+@import './scss/mixins/_rem';
+@import url('https://fonts.googleapis.com/css2?family=Genos:wght@700&family=Sora&display=swap');
 
 :root {
 	--color-grey: #{base.$cadet-grey};
@@ -15,18 +16,42 @@
 	@each $header, $multiplier in base.$headers {
 		--h#{$header}: #{$multiplier * base.$ratio-baseline}rem;
 	}
+
+	--font-family-primary: #{base.$font-family-header};
+	--font-family-secondary: #{base.$font-family-body};
+
+	--color-primary: var(--color-canary);
+	--color-secondary: var(--color-razzmic-berry);
+	--color-tertiary: var(--color-dark-jungle-green);
+	--color-gray: var(--color-grey);
+	--color-black: var(--color-eerie-black);
 }
 
 body {
 	line-height: var(--content-line-height);
 	font-size: var(--font-baseline);
-	background-color: var(--color-grey);
+	background-color: var(--color-canary);
+	font-family: var(--font-family-secondary);
+	color: var(--color-black);
 }
 
 :is(h1, h2, h3, h4, h5, h6) {
 	line-height: var(--header-line-height);
 	margin-top: 0;
 	margin-bottom: 1rem;
+	font-family: var(--font-family-primary);
+	color: var(--color-black);
+}
+
+a {
+	color: var(--color-gray);
+	text-decoration: none;
+	&:is(:hover, :focus) {
+		text-decoration: underline;
+	}
+	&:visited {
+		color: var(--color-secondary);
+	}
 }
 
 @each $header, $multiplier in base.$headers {
