@@ -1,0 +1,28 @@
+@import '../mixins/rem';
+@import '../mixins/breakpoints';
+
+.menu {
+	padding-left: 0;
+	list-style: none;
+	&--primary {
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: column;
+
+		@include breakpoint('medium') {
+			flex-direction: row;
+		}
+		a {
+			color: var(--color-white);
+		}
+	}
+	&--secondary {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+.menu-item a {
+	display: block;
+	padding: 0.5rem;
+}

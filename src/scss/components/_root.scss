@@ -1,0 +1,25 @@
+@use '../variables/base';
+:root {
+	--color-white: #{base.$white};
+	--color-grey: #{base.$cadet-grey};
+	--color-canary: #{base.$canary};
+	--color-razzmic-berry: #{base.$razzmic-berry};
+	--color-eerie-black: #{base.$eerie-black};
+	--color-dark-jungle-green: #{base.$dark-jungle-green};
+	--header-line-height: #{base.$header-line-height};
+	--content-line-height: #{base.$content-line-height};
+	--font-baseline: #{base.$font-baseline}px;
+	--smaller-font: #{base.$smaller-font};
+	@each $header, $multiplier in base.$headers {
+		--h#{$header}: #{$multiplier * base.$ratio-baseline}rem;
+	}
+
+	--font-family-primary: #{base.$font-family-header};
+	--font-family-secondary: #{base.$font-family-body};
+
+	--color-primary: var(--color-canary);
+	--color-secondary: var(--color-razzmic-berry);
+	--color-tertiary: var(--color-dark-jungle-green);
+	--color-gray: var(--color-grey);
+	--color-black: var(--color-eerie-black);
+}

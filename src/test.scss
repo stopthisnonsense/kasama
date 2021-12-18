@@ -1,31 +1,10 @@
 @use './scss/variables/base';
 @use './scss/mixins/_breakpoints' as *;
+@use './scss/components/root';
+@use './scss/components/header';
+@use './scss/components/menu';
 @import './scss/mixins/_rem';
 @import url('https://fonts.googleapis.com/css2?family=Genos:wght@700&family=Sora&display=swap');
-
-:root {
-	--color-grey: #{base.$cadet-grey};
-	--color-canary: #{base.$canary};
-	--color-razzmic-berry: #{base.$razzmic-berry};
-	--color-eerie-black: #{base.$eerie-black};
-	--color-dark-jungle-green: #{base.$dark-jungle-green};
-	--header-line-height: #{base.$header-line-height};
-	--content-line-height: #{base.$content-line-height};
-	--font-baseline: #{base.$font-baseline}px;
-	--smaller-font: #{base.$smaller-font};
-	@each $header, $multiplier in base.$headers {
-		--h#{$header}: #{$multiplier * base.$ratio-baseline}rem;
-	}
-
-	--font-family-primary: #{base.$font-family-header};
-	--font-family-secondary: #{base.$font-family-body};
-
-	--color-primary: var(--color-canary);
-	--color-secondary: var(--color-razzmic-berry);
-	--color-tertiary: var(--color-dark-jungle-green);
-	--color-gray: var(--color-grey);
-	--color-black: var(--color-eerie-black);
-}
 
 body {
 	line-height: var(--content-line-height);
@@ -33,6 +12,7 @@ body {
 	background-color: var(--color-canary);
 	font-family: var(--font-family-secondary);
 	color: var(--color-black);
+	margin: 0;
 }
 
 :is(h1, h2, h3, h4, h5, h6) {
@@ -49,9 +29,9 @@ a {
 	&:is(:hover, :focus) {
 		text-decoration: underline;
 	}
-	&:visited {
-		color: var(--color-secondary);
-	}
+	// &:visited {
+	// 	color: var(--color-secondary);
+	// }
 }
 
 @each $header, $multiplier in base.$headers {
@@ -61,6 +41,9 @@ a {
 }
 
 .entry-content {
+	padding: rem(16);
+}
+.content-wrap {
 	padding: rem(16);
 }
 

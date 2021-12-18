@@ -1,0 +1,15 @@
+// @use '../mixins/rem';
+@import '../mixins/rem';
+
+.header {
+	display: flex;
+	background-color: var(--color-gray);
+	padding: 1rem;
+	// padding: rem(16);
+	align-items: center;
+	&__logo {
+		a {
+			color: var(--color-white);
+		}
+	}
+}
