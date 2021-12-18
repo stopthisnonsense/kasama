@@ -18,6 +18,17 @@
         add_theme_support( 'title-tag' );
     }
 
+    function kc_register_navigation() {
+        register_nav_menus(
+            [
+                'primary-menu' => 'Primary Menu',
+                'secondary-menu' => 'Secondary Menu',
+                'tertiary-menu' => 'Tertiary Menu',
+            ]
+            );
+    }
+
     add_action( 'wp_enqueue_scripts', 'kc_theme_scripts' );
     add_action( 'after_theme_setup', 'kc_register_supports' );
+    add_action( 'after_theme_setup', 'kc_register_navigation' );
 ?>
