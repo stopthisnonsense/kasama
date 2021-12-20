@@ -3,6 +3,8 @@
 @use './scss/components/root';
 @use './scss/components/header';
 @use './scss/components/menu';
+@use './scss/components/widget';
+@use './scss/components/footer';
 @import './scss/mixins/_rem';
 @import url('https://fonts.googleapis.com/css2?family=Genos:wght@700&family=Sora&display=swap');
 
@@ -13,6 +15,9 @@ body {
 	font-family: var(--font-family-secondary);
 	color: var(--color-black);
 	margin: 0;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
 }
 
 :is(h1, h2, h3, h4, h5, h6) {
@@ -41,10 +46,13 @@ a {
 }
 
 .entry-content {
-	padding: rem(16);
+	padding: 1rem;
 }
 .content-wrap {
-	padding: rem(16);
+	padding: 1rem 2rem;
+	max-width: 100ch;
+	margin: 0 auto;
+	flex: 1 1 auto;
 }
 
 .wp-site-blocks {

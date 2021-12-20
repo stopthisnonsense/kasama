@@ -7,7 +7,7 @@
 	&--primary {
 		display: flex;
 		flex-wrap: wrap;
-		flex-direction: column;
+		// flex-direction: column;
 
 		@include breakpoint('medium') {
 			flex-direction: row;
@@ -19,6 +19,13 @@
 	&--secondary {
 		display: flex;
 		flex-direction: column;
+		@include breakpoint('medium') {
+			flex-direction: row;
+		}
+
+		a {
+			color: var(--color-white);
+		}
 	}
 }
 

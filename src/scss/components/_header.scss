@@ -4,9 +4,10 @@
 .header {
 	display: flex;
 	background-color: var(--color-gray);
-	padding: 1rem;
+	padding: var(--gap);
 	// padding: rem(16);
 	align-items: center;
+	flex-direction: column;
 	&__logo {
 		a {
 			color: var(--color-white);
