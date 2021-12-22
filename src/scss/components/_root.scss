@@ -23,5 +23,7 @@
 	--color-gray: var(--color-grey);
 	--color-black: var(--color-eerie-black);
 
+	--primary-transition: #{base.$primary-transition};
+
 	--gap: #{base.$gap};
 }
