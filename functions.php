@@ -28,6 +28,12 @@
             );
     }
 
+    function header_scripts() { ?>
+    <title><?php wp_title('-', true, 'right'); ?></title>
+<?php
+    }
+
+    add_action( 'wp_head', 'header_scripts' );
     add_action( 'wp_enqueue_scripts', 'kc_theme_scripts' );
     add_action( 'after_theme_setup', 'kc_register_supports' );
     add_action( 'after_theme_setup', 'kc_register_navigation' );
