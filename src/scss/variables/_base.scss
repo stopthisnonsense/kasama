@@ -6,6 +6,16 @@ $canary: #f8f991ff;
 $razzmic-berry: #8c5383ff;
 $eerie-black: #171614ff;
 $dark-jungle-green: #1e2019ff;
+
+$site-palette: (
+	'white': $white,
+	'grey': $cadet-grey,
+	'canary': $canary,
+	'razzmic-berry': $razzmic-berry,
+	'eerie-black': $eerie-black,
+	'dark-jungle-green': $dark-jungle-green,
+);
+
 $header-line-height: 1.2;
 $content-line-height: 1.5;
 

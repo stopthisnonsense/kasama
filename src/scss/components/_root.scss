@@ -1,12 +1,22 @@
 @use '../variables/base';
 @use 'sass:color';
 :root {
-	--color-white: #{base.$white};
-	--color-grey: #{base.$cadet-grey};
-	--color-canary: #{base.$canary};
-	--color-razzmic-berry: #{base.$razzmic-berry};
-	--color-eerie-black: #{base.$eerie-black};
-	--color-dark-jungle-green: #{base.$dark-jungle-green};
+	// --color-white: #{base.$white};
+	// --color-grey: #{base.$cadet-grey};
+	// --color-canary: #{base.$canary};
+	// --color-razzmic-berry: #{base.$razzmic-berry};
+	// --color-eerie-black: #{base.$eerie-black};
+	// --color-dark-jungle-green: #{base.$dark-jungle-green};
+
+	@each $name, $color in base.$site-palette {
+		$color-name: '--color-' + $name;
+		#{$color-name}: #{$color};
+		#{$color-name + '-transparent'}: #{color.change(
+				$color,
+				$alpha: base.$transparent
+			)};
+	}
+
 	--header-line-height: #{base.$header-line-height};
 	--content-line-height: #{base.$content-line-height};
 	--font-baseline: #{base.$font-baseline}px;
@@ -24,26 +34,11 @@
 	--color-gray: var(--color-grey);
 	--color-black: var(--color-eerie-black);
 
-	--color-primary-transparent: #{color.change(
-			base.$canary,
-			$alpha: base.$transparent
-		)};
-	--color-secondary-transparent: #{color.change(
-			base.$razzmic-berry,
-			$alpha: base.$transparent
-		)};
-	--color-tertiary-transparent: #{color.change(
-			base.$dark-jungle-green,
-			$alpha: base.$transparent
-		)};
-	--color-gray-transparent: #{color.change(
-			base.$cadet-grey,
-			$alpha: base.$transparent
-		)};
-	--color-black-transparent: #{color.change(
-			base.$eerie-black,
-			$alpha: base.$transparent
-		)};
+	--color-primary-transparent: var(--color-canary-transparent);
+	--color-secondary-transparent: var(--color-razzmic-berry-transparent);
+	--color-tertiary-transparent: var(--color-dark-jungle-green-transparent);
+	--color-gray-transparent: var(--color-cadet-grey-transparent);
+	--color-black-transparent: var(--color-eerie-black-transparent);
 
 	--primary-transition: #{base.$primary-transition};
 
