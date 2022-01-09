@@ -1,4 +1,5 @@
 @use '../variables/base';
+@use 'sass:color';
 :root {
 	--color-white: #{base.$white};
 	--color-grey: #{base.$cadet-grey};
@@ -22,6 +23,27 @@
 	--color-tertiary: var(--color-dark-jungle-green);
 	--color-gray: var(--color-grey);
 	--color-black: var(--color-eerie-black);
+
+	--color-primary-transparent: #{color.change(
+			base.$canary,
+			$alpha: base.$transparent
+		)};
+	--color-secondary-transparent: #{color.change(
+			base.$razzmic-berry,
+			$alpha: base.$transparent
+		)};
+	--color-tertiary-transparent: #{color.change(
+			base.$dark-jungle-green,
+			$alpha: base.$transparent
+		)};
+	--color-gray-transparent: #{color.change(
+			base.$cadet-grey,
+			$alpha: base.$transparent
+		)};
+	--color-black-transparent: #{color.change(
+			base.$eerie-black,
+			$alpha: base.$transparent
+		)};
 
 	--primary-transition: #{base.$primary-transition};
 

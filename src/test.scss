@@ -11,7 +11,7 @@
 body {
 	line-height: var(--content-line-height);
 	font-size: var(--font-baseline);
-	background-color: var(--color-canary);
+	background-color: var(--color-primary);
 	font-family: var(--font-family-secondary);
 	color: var(--color-black);
 	margin: 0;
@@ -53,6 +53,8 @@ a {
 	max-width: 100ch;
 	margin: 0 auto;
 	flex: 1 1 auto;
+	background-color: var(--color-secondary-transparent);
+	box-shadow: 0 0 5px var(--color-black-transparent);
 }
 
 .wp-site-blocks {
