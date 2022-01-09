@@ -4,6 +4,7 @@
 .menu {
 	padding-left: 0;
 	list-style: none;
+	text-align: center;
 	&--primary {
 		display: flex;
 		flex-wrap: wrap;
@@ -19,6 +20,7 @@
 	&--secondary {
 		display: flex;
 		flex-direction: column;
+
 		@include breakpoint('medium') {
 			flex-direction: row;
 		}
