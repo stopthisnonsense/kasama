@@ -28,6 +28,16 @@
             );
     }
 
+    function kc_register_sidebar() {
+        register_sidebar(
+            [
+                'id' => 'primary',
+                'name' => 'Primary Sidebar',
+                'description' => 'The Primary Theme Sidebar'
+            ]
+        );
+    }
+
     function header_scripts() { ?>
     <title><?php wp_title('-', true, 'right'); ?></title>
 <?php
@@ -37,4 +47,5 @@
     add_action( 'wp_enqueue_scripts', 'kc_theme_scripts' );
     add_action( 'after_theme_setup', 'kc_register_supports' );
     add_action( 'after_theme_setup', 'kc_register_navigation' );
+    add_action( 'widget_init', 'kc_register_sidebar' );
 ?>
