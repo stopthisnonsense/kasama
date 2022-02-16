@@ -2,13 +2,21 @@
 window.addEventListener(
 	'load',
 	() => {
+		//This is the game world object, which controls and builds out everything.
+		const world = {
+			name: 'world',
+			creatures: [],
+		};
 		let message = 'Welcome to the game';
 		const gameMessage = (message = message) => {
 			console.log(message);
 		};
-		let idNumber = 0;
+		let idNumber = 0,
+			lastObserved = '';
 		gameMessage(message);
-		const actions = {
+		console.log(`Something feels different.`);
+
+		const action = {
 			listen: (data) => {
 				if (data) {
 					return data;
@@ -20,46 +28,81 @@ window.addEventListener(
 					console.log(`${creature} said: ${data}`);
 				}
 			},
+			observe: (creature, data) => {
+				if (creature) {
+					return console.log(JSON.stringify(creature));
+				}
+				return;
+			},
 		};
 
-		function creatureCreate() {
+		function creatureCreate(name, species) {
 			this.id = idNumber++;
-			this.name = 'Doof';
-			this.action = actions;
+			this.name = name ? name : 'Doof';
+			this.species = species ? species : 'Doof';
+			this.action = action;
 			this.lastHeard = this.action.listen();
+			world.creatures.push(this);
 		}
-
+		const i = new creatureCreate('I', 'Human');
+		i.action.observe(i);
+		action.talk(
+			i.name,
+			`Hmmmm, It seems that I can now see what I am. I am a ${i.species}`
+		);
+		action.talk(i.name, `At least, I think something is different`);
 		const doof = new creatureCreate();
-		console.log(`Here, is my friend ${doof.name}`);
+		action.talk(i.name, `Here, is my friend ${doof.name}`);
 
-		console.log(`${doof.name} is the first of their kind.`);
-		console.log(
+		action.talk(i.name, `${doof.name} is the first of their kind.`);
+		action.talk(
+			i.name,
 			`It may be strange, but it is not the first time that something like this has happened.`
 		);
-		console.log(`Back to ${doof.name} for a minute though.`);
-		console.log(
+		action.talk(i.name, `Back to ${doof.name} for a minute though.`);
+		action.talk(
+			i.name,
 			`${doof.name} may be named ${doof.name}, but that is not enough. We must first figure out what ${doof.name} is.`
 		);
-		console.log(`${doof.name}, may I ask you, what are you.`);
-		console.log(doof);
+		action.talk(i.name, `${doof.name}, may I ask you, what are you.`);
+		// console.log(doof);
 		if (doof.lastHeard) {
 			// console.log(doof.action.listen());
-			doof.lastHeard = doof.action.listen(
-				`${doof.name} seemed to recognize it. I feel something is different.`
-			);
-			console.log(`${doof.names}'s last heard sound was ${doof.lastHeard}`);
+			// doof.lastHeard = doof.action.listen(
+			// 	action.talk(
+			// 		i.name,
+			// 		`${doof.name} seemed to recognize it. I feel something is different.`
+			// 	)
+			// );
+			// console.log(`${doof.name}'s last heard sound was "${doof.lastHeard}"`);
 
-			doof.action.talk(doof.name, `Sup`);
+			i.lastHeard = i.action.listen(doof.action.talk(doof.name, `Sup`));
 
 			doof.lastHeard = doof.action.listen(
-				console.log(`${doof.name}! You speak! `)
+				action.talk(i.name, `${doof.name}! You speak! `)
 			);
-			doof.lastHeard;
+			// doof.lastHeard;
+
+			i.lastHeard = i.action.listen(doof.action.talk(doof.name, `Yup`));
+
+			doof.lastHeard = doof.action.listen(
+				action.talk(i.name, `Can you Tell Us more about yourself?`)
+			);
+
+			i.lastHeard = i.action.listen(doof.action.talk(doof.name, `Yup`));
+
+			i.lastHeard = i.action.listen(
+				doof.action.talk(doof.name, doof.action.observe(doof))
+			);
 		}
 
-		console.log(`Hmmm.`);
+		action.talk(i.name, `Hmmm.`);
 
-		console.log(
+		action.talk(i.name, `I wonder what else we can observe`);
+		action.observe(world);
+		action.talk(i.name, `I can't seem to affect the world itself.`);
+		action.talk(
+			i.name,
 			`It seems that I may not manifest myself on this. I need a method!`
 		);
 	},
