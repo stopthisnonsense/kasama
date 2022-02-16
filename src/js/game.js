@@ -6,6 +6,7 @@ window.addEventListener(
 		const world = {
 			name: 'world',
 			creatures: [],
+			species: [],
 		};
 		let message = 'Welcome to the game';
 		const gameMessage = (message = message) => {
@@ -15,43 +16,56 @@ window.addEventListener(
 			lastObserved = '';
 		gameMessage(message);
 		console.log(`Something feels different.`);
-
 		const action = {
-			listen: (data) => {
+			listen: (event, data) => {
 				if (data) {
-					return data;
+					console.log(world.creatures[event.id].lastHeard);
+					return (world.creatures[event.id].lastHeard = data);
+					// console.log(world.creatures[this.id]);
 				}
 				return `Nothing was Heard.`;
 			},
 			talk: (creature, data) => {
 				if (data) {
 					console.log(`${creature} said: ${data}`);
+					return `${creature} said: ${data}`;
 				}
 			},
 			observe: (creature, data) => {
 				if (creature) {
-					return console.log(JSON.stringify(creature));
+					let returnData = console.log(JSON.stringify(creature));
+					lastObserved = returnData;
+					return returnData;
 				}
 				return;
 			},
 		};
-
+		class Species {
+			constructor(name) {
+				this.id = idNumber++;
+				this.name = name;
+				world.species.push(this);
+			}
+		}
 		function creatureCreate(name, species) {
 			this.id = idNumber++;
 			this.name = name ? name : 'Doof';
-			this.species = species ? species : 'Doof';
+			this.species = species ? new Species(species) : new Species('Doof');
 			this.action = action;
 			this.lastHeard = this.action.listen();
 			world.creatures.push(this);
 		}
-		const i = new creatureCreate('I', 'Human');
+
+		new creatureCreate('I', 'Human');
+		const i = world.creatures[0];
 		i.action.observe(i);
 		action.talk(
 			i.name,
 			`Hmmmm, It seems that I can now see what I am. I am a ${i.species}`
 		);
 		action.talk(i.name, `At least, I think something is different`);
-		const doof = new creatureCreate();
+		new creatureCreate();
+		const doof = world.creatures[1];
 		action.talk(i.name, `Here, is my friend ${doof.name}`);
 
 		action.talk(i.name, `${doof.name} is the first of their kind.`);
@@ -78,9 +92,7 @@ window.addEventListener(
 
 			i.lastHeard = i.action.listen(doof.action.talk(doof.name, `Sup`));
 
-			doof.lastHeard = doof.action.listen(
-				action.talk(i.name, `${doof.name}! You speak! `)
-			);
+			doof.action.listen(action.talk(i.name, `${doof.name}! You speak! `));
 			// doof.lastHeard;
 
 			i.lastHeard = i.action.listen(doof.action.talk(doof.name, `Yup`));
@@ -88,7 +100,6 @@ window.addEventListener(
 			doof.lastHeard = doof.action.listen(
 				action.talk(i.name, `Can you Tell Us more about yourself?`)
 			);
-
 			i.lastHeard = i.action.listen(doof.action.talk(doof.name, `Yup`));
 
 			i.lastHeard = i.action.listen(
