@@ -1,61 +1,28 @@
 'use strict';
+import { Species } from './species/species';
+import { actions } from './actions/actions';
+import { idNumber, world, lastObserved } from './globals/globals';
+import { checkWorld } from './utils/checkWorld';
 window.addEventListener(
 	'load',
 	() => {
 		//This is the game world object, which controls and builds out everything.
-		const world = {
-			name: 'world',
-			creatures: [],
-			species: [],
-		};
+
 		let message = 'Welcome to the game';
 		const gameMessage = (message = message) => {
 			console.log(message);
 		};
-		let idNumber = 0,
-			lastObserved = '';
 		gameMessage(message);
-		console.log(`Something feels different.`);
-		const action = {
-			listen: (event, data) => {
-				if (data) {
-					console.log(world.creatures[event.id].lastHeard);
-					return (world.creatures[event.id].lastHeard = data);
-					// console.log(world.creatures[this.id]);
-				}
-				return `Nothing was Heard.`;
-			},
-			talk: (creature, data) => {
-				if (data) {
-					console.log(`${creature} said: ${data}`);
-					return `${creature} said: ${data}`;
-				}
-			},
-			observe: (creature, data) => {
-				if (creature) {
-					let returnData = console.log(JSON.stringify(creature));
-					lastObserved = returnData;
-					return returnData;
-				}
-				return;
-			},
-		};
-		class Species {
-			constructor(name) {
-				this.id = idNumber++;
-				this.name = name;
-				world.species.push(this);
-			}
-		}
 		function creatureCreate(name, species) {
 			this.id = idNumber++;
 			this.name = name ? name : 'Doof';
 			this.species = species ? new Species(species) : new Species('Doof');
-			this.action = action;
+			this.action = world.actions;
 			this.lastHeard = this.action.listen();
 			world.creatures.push(this);
 		}
-
+		let action = world.actions;
+		new creatureCreate('I', 'Human');
 		new creatureCreate('I', 'Human');
 		const i = world.creatures[0];
 		i.action.observe(i);
