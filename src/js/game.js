@@ -14,17 +14,25 @@ window.addEventListener(
 		};
 		gameMessage(message);
 		function creatureCreate(name, species) {
-			this.id = idNumber++;
-			this.name = name ? name : 'Doof';
-			this.species = species ? new Species(species) : new Species('Doof');
-			this.action = world.actions;
-			this.lastHeard = this.action.listen();
-			world.creatures.push(this);
+			// this.id = idNumber++;
+			// this.name = name ? name : 'Doof';
+			// this.species = world.species[species]
+			// 	? world.species[species]
+			// 	: new Species(species);
+			// this.action = world.actions;
+			// this.lastHeard = this.action.listen();
+			let creatureName = name ? name : 'Doof';
+			world.creatures[creatureName] = {
+				id: idNumber++,
+				name: creatureName,
+				action: world.actions,
+				lastHeard: action.listen(),
+			};
 		}
 		let action = world.actions;
 		new creatureCreate('I', 'Human');
-		new creatureCreate('I', 'Human');
-		const i = world.creatures[0];
+		// new creatureCreate('I', 'Human');
+		const i = world.creatures['I'];
 		i.action.observe(i);
 		action.talk(
 			i.name,
@@ -32,7 +40,7 @@ window.addEventListener(
 		);
 		action.talk(i.name, `At least, I think something is different`);
 		new creatureCreate();
-		const doof = world.creatures[1];
+		const doof = world.creatures['Doof'];
 		action.talk(i.name, `Here, is my friend ${doof.name}`);
 
 		action.talk(i.name, `${doof.name} is the first of their kind.`);
